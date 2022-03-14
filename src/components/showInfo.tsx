@@ -1,10 +1,6 @@
+import type {TypeProduct} from "../types/products";
 type propsShow = {
-    name : string,
-    age : number,
-    person : {
-        name :string,
-        age : number,
-    }
+   person :TypeProduct
 }
 const ShowInfo = (props :propsShow) => {
     console.log(props);
