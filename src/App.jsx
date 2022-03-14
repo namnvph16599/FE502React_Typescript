@@ -24,9 +24,6 @@ function App() {
       <div>Status : {status ? 'Hiện' : 'Ẩn'}</div>
       <button onClick={() => setStatus(!status)}>Toggle Status</button>
       <p>--------------------------------</p>
-
-
-
       <div>
         {products.map(val => <div>{val.name}
           <button onClick={() => { handlerRemoveProduct(val.id) }}>
