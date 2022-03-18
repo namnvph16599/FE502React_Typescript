@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import './App.css'
 import ShowInfo from "./components/showInfo"
 import type { TypeProduct } from "./types/products"
@@ -9,10 +9,28 @@ import AdminLayout from './pages/layouts/AdminLayout';
 import UserLayout from './pages/layouts/UserLayout';
 import Dashboard from './pages/Dashboard';
 import ProductDetails from './pages/ProductDetails';
+import ProductAdd from './pages/ProductAdd';
+import { addProduct, listProducts } from './api/productsApi';
 
 function App() {
-  const [count, setCount] = useState<number>(0)
-  const [info, setInfo] = useState<TypeProduct>({ name: "ngo nam", age: 20 })
+  const [products, setProducts] = useState<{  name: String,
+    price: Number,
+    image: String,
+    description: String }[]>([])
+
+  useEffect(() => {
+    const getProducts = async () => {
+      const { data } = await listProducts();
+      setProducts(data);
+    }
+    getProducts();
+  }, []);
+
+  const handlerAddProducts = async (dataAddProducts: any) => {
+    console.log(dataAddProducts);
+    const { data } = await addProduct(dataAddProducts); // sau khi call api có id thì sẽ set lại products
+    setProducts([...products, data])
+  }
   return (
     <div>
       <header>
@@ -26,7 +44,8 @@ function App() {
         <Routes>
           <Route path="/" element={<UserLayout />} >
             <Route index element={<HomePages />} />
-            <Route path="/products" element={<ProductPages />} />
+            <Route path="/products" element={<ProductPages products={products} />} /> 
+            <Route path="/products/add" element={<ProductAdd onAddProduct={handlerAddProducts} />} />
             <Route path="/products/:id" element={<ProductDetails />} />
           </Route>
           <Route path="/admin" element={<AdminLayout />}>
