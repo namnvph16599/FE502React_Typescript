@@ -14,7 +14,7 @@ const ProductPages = (props: Props) => {
   return (
     <div>
       <ul>
-        {array.map(item => <li>{item.name}</li>)}
+        {array.map((item) => <li>{item.name}</li>)}
       </ul>
     </div>
   )
