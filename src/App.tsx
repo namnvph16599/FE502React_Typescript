@@ -11,12 +11,19 @@ import Dashboard from './pages/Dashboard';
 import ProductDetails from './pages/ProductDetails';
 import ProductAdd from './pages/ProductAdd';
 import { addProduct, listProducts } from './api/productsApi';
+import PrivateRouterAdmin from './components/PrivateRouterAdmin';
+import Signin from './pages/Signin';
+import Signup from './pages/Signup';
+import { signin, signup } from './api/user';
 
 function App() {
-  const [products, setProducts] = useState<{  name: String,
+  const [products, setProducts] = useState<{
+    id?: number
+    name: String,
     price: Number,
     image: String,
-    description: String }[]>([])
+    description: String
+  }[]>([])
 
   useEffect(() => {
     const getProducts = async () => {
@@ -31,6 +38,20 @@ function App() {
     const { data } = await addProduct(dataAddProducts); // sau khi call api có id thì sẽ set lại products
     setProducts([...products, data])
   }
+
+
+  //Dang ki
+  const handleSignup = async (dataPost: { email: string, password: string }) => {
+    const { data } = await signup(dataPost);
+    console.log(data);
+  }
+  //dang nhap
+  const handleSignin = async (dataPost: { email: string, password: string }) => {
+    // const user = 
+    const { data } = await signin(dataPost);
+    console.log(data);
+
+  }
   return (
     <div>
       <header>
@@ -44,12 +65,15 @@ function App() {
         <Routes>
           <Route path="/" element={<UserLayout />} >
             <Route index element={<HomePages />} />
-            <Route path="/products" element={<ProductPages products={products} />} /> 
+            <Route path="/signin" element={<Signin onSignin={handleSignin} />} />
+            <Route path="/signup" element={<Signup onSignup={handleSignup} />} />
+            <Route path="/products" element={<ProductPages products={products} />} />
             <Route path="/products/add" element={<ProductAdd onAddProduct={handlerAddProducts} />} />
             <Route path="/products/:id" element={<ProductDetails />} />
           </Route>
-          <Route path="/admin" element={<AdminLayout />}>
+          <Route path="/admin" element={<PrivateRouterAdmin><AdminLayout /></PrivateRouterAdmin>}>
             <Route index element={<Dashboard />} />
+            <Route path="dashboard" element={<Dashboard />} />
           </Route>
 
 
