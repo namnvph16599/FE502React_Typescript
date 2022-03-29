@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import { useForm, SubmitHandler } from 'react-hook-form'
-import { useNavigate, useParams } from 'react-router-dom'
+import { Link, useNavigate, useParams } from 'react-router-dom'
 import { cateListOne } from '../../../api/category'
 import { CategoryTypes } from '../../../types/category'
 
@@ -28,9 +28,21 @@ const CategoryEdit = (props: Props) => {
   return (
     <div>
       <div className="max-w-7xl mx-auto py-6 sm:px-6 lg:px-8">
-        <div className="sm:flex items-center justify-between">
+      <div className="sm:flex items-center justify-between">
           <p className="focus:outline-none text-base sm:text-lg md:text-xl lg:text-2xl font-bold leading-normal 
-          text-gray-800">Edit Category</p>
+            text-gray-800">Category Edit</p>
+          <a href="/admin/products" className="sm:ml-3">
+            <Link to="/admin/category/add">
+              <button type="button" className="mr-4 inline-flex items-center px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                Add
+              </button>
+            </Link>
+            <Link to="/admin/category">
+              <button type="button" className="inline-flex items-center px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                List
+              </button>
+            </Link>
+          </a>
         </div>
         <div className="md:grid md:grid-cols-3 md:gap-6">
           <div className="mt-5 md:mt-0 md:col-span-3">
