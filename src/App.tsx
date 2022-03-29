@@ -16,16 +16,29 @@ import Signup from './pages/Signup';
 import PrivateRouter from './components/PrivateRouter';
 import { getLocalStorage } from './utils/localStorage';
 import Dashboard from './pages/admin/Dashboard';
+import { cateList, cateRemove } from './api/category';
+import { CategoryTypes } from './types/category';
+import CategoryList from './pages/admin/category/CategoryList';
+import CategoryAdd from './pages/admin/category/CategoryAdd';
+import CategoryEdit from './pages/admin/category/CategoryEdit';
 function App() {
   const [products, setProducts] = useState<ProductsType[]>([]);
+  const [category, setCategory] = useState<CategoryTypes[]>([]);
+
 
   useEffect(() => {
     const getProducts = async () => {
       const { data } = await list();
-      console.log(data);
+      // console.log(data);
       setProducts(data);
     }
-    getProducts()
+    getProducts();
+    const getCategory = async () => {
+      const { data } = await cateList();
+      // console.log(data);
+      setCategory(data)
+    }
+    getCategory()
   }, [])
 
   const handlerRemoveProduct = (id: number) => {
@@ -33,7 +46,7 @@ function App() {
     setProducts(products.filter(item => item._id != id))
   }
   const handlerAddProducts = async (dataPost: ProductsType) => {
-    console.log(dataPost);
+    // console.log(dataPost);
     const { data } = await post(dataPost);
     setProducts([...products, data])
   }
@@ -45,6 +58,14 @@ function App() {
     } catch (err) {
       console.log(err);
     }
+  }
+
+
+  //category 
+  const onRemoveCategory = (id: number) => {
+    // console.log(id);
+    cateRemove(id);
+    setCategory(category.filter(item => item._id != id));
   }
   return (
     <div>
@@ -65,6 +86,12 @@ function App() {
             <Route index element={<ProductsAdmin products={products} propsHandlerDeleteProducts={handlerRemoveProduct} />} />
             <Route path=":id/edit" element={<ProductEdit onUpdate={handlerUpdateProduct} />} />
             <Route path="add" element={<ProductsAdminAdd onAdd={handlerAddProducts} />} />
+          </Route>
+          <Route path="category">
+            <Route index element={<CategoryList category={category} handlerRemoveCategory={onRemoveCategory} />} />
+            <Route path="add" element={<CategoryAdd />} />
+            <Route path=":id/edit" element={<CategoryEdit />} />
+
           </Route>
         </Route>
       </Routes>

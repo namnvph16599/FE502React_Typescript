@@ -12,6 +12,10 @@ const ProductsAdmin = (props: Props) => {
   return (
     <div>
       <div className="bg-white shadow px-4 md:px-10 pt-4 md:pt-7 pb-5 overflow-y-auto">
+      <div className="sm:flex items-center justify-between">
+          <p className="focus:outline-none text-base sm:text-lg md:text-xl lg:text-2xl font-bold leading-normal 
+            text-gray-800">Products List</p>
+        </div>
         <table className="w-full whitespace-nowrap">
           <thead>
             <tr className="focus:outline-none h-16 w-full text-sm leading-none text-gray-800">
