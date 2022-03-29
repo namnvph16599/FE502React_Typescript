@@ -1,84 +1,72 @@
-import { useState, useEffect } from 'react'
-import './App.css'
-import ShowInfo from "./components/showInfo"
-import type { TypeProduct } from "./types/products"
-import { Navigate, NavLink, Route, Routes } from 'react-router-dom';
-import HomePages from "./pages/HomePages"
-import ProductPages from './pages/ProductPages';
+import { useEffect, useState } from 'react';
+// import 'bootstrap/dist/css/bootstrap.css' from "bootstrap";
 import AdminLayout from './pages/layouts/AdminLayout';
-import UserLayout from './pages/layouts/UserLayout';
-import Dashboard from './pages/Dashboard';
-import ProductDetails from './pages/ProductDetails';
-import ProductAdd from './pages/ProductAdd';
-import { addProduct, listProducts } from './api/productsApi';
-import PrivateRouterAdmin from './components/PrivateRouter';
+import { Route, Routes } from 'react-router-dom';
+import { ProductsType } from './types/products';
+import ProductsAdmin from './pages/admin/products/Products';
+import ProductsAdminAdd from './pages/admin/products/ProductsAdd';
+import { list, post, put, remove } from "./api/products"
+import ProductEdit from './pages/admin/products/ProductEdit';
+import WebsiteLayout from './pages/layouts/WebsiteLayout';
+import HomePage from './pages/HomePages';
+import ProductsPage from './pages/ProductsPage';
+import ProductDetail from './pages/ProductDetail';
 import Signin from './pages/Signin';
 import Signup from './pages/Signup';
-import { signin, signup } from './api/user';
-
+import PrivateRouter from './components/PrivateRouter';
+import { getLocalStorage } from './utils/localStorage';
 function App() {
-  const [products, setProducts] = useState<{
-    id?: number
-    name: String,
-    price: Number,
-    image: String,
-    description: String
-  }[]>([])
+  const [products, setProducts] = useState<ProductsType[]>([]);
 
   useEffect(() => {
     const getProducts = async () => {
-      const { data } = await listProducts();
+      const { data } = await list();
+      console.log(data);
       setProducts(data);
     }
-    getProducts();
-  }, []);
+    getProducts()
+  }, [])
 
-  const handlerAddProducts = async (dataAddProducts: any) => {
-    console.log(dataAddProducts);
-    const { data } = await addProduct(dataAddProducts); // sau khi call api có id thì sẽ set lại products
+  const handlerRemoveProduct = (id: number) => {
+    remove(id);
+    setProducts(products.filter(item => item._id != id))
+  }
+  const handlerAddProducts = async (dataPost: ProductsType) => {
+    console.log(dataPost);
+    const { data } = await post(dataPost);
     setProducts([...products, data])
   }
 
-
-  //Dang ki
-  const handleSignup = async (dataPost: { email: string, password: string }) => {
-    const { data } = await signup(dataPost);
-    console.log(data);
-  }
-  //dang nhap
-  const handleSignin = async (dataPost: { email: string, password: string }) => {
-    // const user = 
-    const { data } = await signin(dataPost);
-    console.log(data);
-
+  const handlerUpdateProduct = async (dataPost: ProductsType) => {
+    try {
+      const { data } = await put(dataPost);
+      setProducts(products.map(item => item._id == data._id ? data : item))
+    } catch (err) {
+      console.log(err);
+    }
   }
   return (
     <div>
-      <header>
-        <ul>
-          <li><NavLink to="/">Home page</NavLink></li>
-          <li><NavLink to="/products">Product page</NavLink></li>
-          <li><NavLink to="/">Admin page</NavLink></li>
-        </ul>
-      </header>
-      <main>
-        <Routes>
-          <Route path="/" element={<UserLayout />} >
-            <Route index element={<HomePages />} />
-            <Route path="/signin" element={<Signin onSignin={handleSignin} />} />
-            <Route path="/signup" element={<Signup onSignup={handleSignup} />} />
-            <Route path="/products" element={<ProductPages products={products} />} />
-            <Route path="/products/add" element={<ProductAdd onAddProduct={handlerAddProducts} />} />
-            <Route path="/products/:id" element={<ProductDetails />} />
-          </Route>
-          <Route path="/admin" element={<PrivateRouterAdmin><AdminLayout /></PrivateRouterAdmin>}>
-            <Route index element={<Dashboard />} />
-            <Route path="dashboard" element={<Dashboard />} />
-          </Route>
+      <Routes>
+        <Route path="/" element={<WebsiteLayout />}>
+          <Route index element={<HomePage products={products} />} />
+          <Route path="products" element={<ProductsPage products={products} />} />
+          <Route path="products/:id" element={<ProductDetail />} />
+          <Route path="signin" element={<Signin />} />
+          <Route path="signup" element={<Signup />} />
 
 
-        </Routes>
-      </main>
+
+        </Route>
+        <Route path="admin" element={<PrivateRouter><AdminLayout /></PrivateRouter>} >
+          <Route index element={<ProductsAdmin products={products} propsHandlerDeleteProducts={handlerRemoveProduct} />} />
+          <Route path="products">
+            <Route index element={<ProductsAdmin products={products} propsHandlerDeleteProducts={handlerRemoveProduct} />} />
+            <Route path=":id/edit" element={<ProductEdit onUpdate={handlerUpdateProduct} />} />
+            <Route path="add" element={<ProductsAdminAdd onAdd={handlerAddProducts} />} />
+          </Route>
+        </Route>
+      </Routes>
     </div>
   )
 }
