@@ -11,7 +11,7 @@ import Dashboard from './pages/Dashboard';
 import ProductDetails from './pages/ProductDetails';
 import ProductAdd from './pages/ProductAdd';
 import { addProduct, listProducts } from './api/productsApi';
-import PrivateRouterAdmin from './components/PrivateRouterAdmin';
+import PrivateRouterAdmin from './components/PrivateRouter';
 import Signin from './pages/Signin';
 import Signup from './pages/Signup';
 import { signin, signup } from './api/user';

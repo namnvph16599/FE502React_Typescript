@@ -1,5 +1,6 @@
 
-export type TypeProduct = {
-    name:string,
-    age : number
+export type ProductsType = {
+    _id?: number,
+    name: string,
+    age: number
 }
