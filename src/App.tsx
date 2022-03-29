@@ -15,6 +15,7 @@ import Signin from './pages/Signin';
 import Signup from './pages/Signup';
 import PrivateRouter from './components/PrivateRouter';
 import { getLocalStorage } from './utils/localStorage';
+import Dashboard from './pages/admin/Dashboard';
 function App() {
   const [products, setProducts] = useState<ProductsType[]>([]);
 
@@ -59,7 +60,7 @@ function App() {
 
         </Route>
         <Route path="admin" element={<PrivateRouter><AdminLayout /></PrivateRouter>} >
-          <Route index element={<ProductsAdmin products={products} propsHandlerDeleteProducts={handlerRemoveProduct} />} />
+          <Route index element={<Dashboard />} />
           <Route path="products">
             <Route index element={<ProductsAdmin products={products} propsHandlerDeleteProducts={handlerRemoveProduct} />} />
             <Route path=":id/edit" element={<ProductEdit onUpdate={handlerUpdateProduct} />} />

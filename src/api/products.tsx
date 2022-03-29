@@ -2,7 +2,7 @@ import { ProductsType } from "../types/products";
 import { getLocalStorage } from "../utils/localStorage";
 import instance from "./instance";
 
-const { token, user } = getLocalStorage();
+
 export const list = () => {
     const url = "/products";
     return instance.get(url)
@@ -23,6 +23,7 @@ export const put = (products: ProductsType) => {
     return instance.put(url, products)
 }
 
+const { token, user } = getLocalStorage();
 export const post = (data: ProductsType) => {
     const url = `products/${user.id}`;
     return instance.post(url, data, {
@@ -31,3 +32,8 @@ export const post = (data: ProductsType) => {
         }
     });
 }
+
+// export const post = (data: ProductsType) => {
+//     const url = `products`;
+//     return instance.post(url, data);
+// }

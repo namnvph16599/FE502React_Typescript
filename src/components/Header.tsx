@@ -5,7 +5,10 @@ import { getLocalStorage } from '../utils/localStorage'
 type Props = {}
 
 const Header = (props: Props) => {
-    const {user} = getLocalStorage();
+    const { user } = getLocalStorage();
+    // const user = {
+    //     name : "nam"
+    // };
     return (
         <div className="relative bg-white bg-white">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 ">
