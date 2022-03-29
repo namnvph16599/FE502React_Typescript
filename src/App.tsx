@@ -16,7 +16,7 @@ import Signup from './pages/Signup';
 import PrivateRouter from './components/PrivateRouter';
 import { getLocalStorage } from './utils/localStorage';
 import Dashboard from './pages/admin/Dashboard';
-import { cateList, cateRemove } from './api/category';
+import { cateList, catePost, catePut, cateRemove } from './api/category';
 import { CategoryTypes } from './types/category';
 import CategoryList from './pages/admin/category/CategoryList';
 import CategoryAdd from './pages/admin/category/CategoryAdd';
@@ -62,10 +62,23 @@ function App() {
 
 
   //category 
-  const onRemoveCategory = (id: number) => {
+  const handlerRemoveCategory = (id: number) => {
     // console.log(id);
     cateRemove(id);
     setCategory(category.filter(item => item._id != id));
+  }
+
+
+  const handlerAddCategory = async (dataPost: CategoryTypes) => {
+    // console.log(data);
+    const { data } = await catePost(dataPost);
+    setCategory([...category, data]);
+    // setCategory(category.filter(item => item._id != id));
+  }
+
+  const handlerEditCategory = async (dataPost: CategoryTypes) => {
+    const { data } = await catePut(dataPost);
+    setCategory(category.map(item => item._id == data._id ? data : item))
   }
   return (
     <div>
@@ -88,9 +101,9 @@ function App() {
             <Route path="add" element={<ProductsAdminAdd onAdd={handlerAddProducts} />} />
           </Route>
           <Route path="category">
-            <Route index element={<CategoryList category={category} handlerRemoveCategory={onRemoveCategory} />} />
-            <Route path="add" element={<CategoryAdd />} />
-            <Route path=":id/edit" element={<CategoryEdit />} />
+            <Route index element={<CategoryList category={category} handlerRemoveCategory={handlerRemoveCategory} />} />
+            <Route path="add" element={<CategoryAdd handlePushDataCate={handlerAddCategory} />} />
+            <Route path=":id/edit" element={<CategoryEdit handlePushDataEditCate={handlerEditCategory} />} />
 
           </Route>
         </Route>
