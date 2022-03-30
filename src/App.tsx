@@ -22,6 +22,7 @@ import CategoryList from './pages/admin/category/CategoryList';
 import CategoryAdd from './pages/admin/category/CategoryAdd';
 import CategoryEdit from './pages/admin/category/CategoryEdit';
 import CategoryDetails from './pages/CategoryDetails';
+import SearchPages from './pages/SearchPages';
 function App() {
   const [products, setProducts] = useState<ProductsType[]>([]);
   const [category, setCategory] = useState<CategoryTypes[]>([]);
@@ -89,6 +90,7 @@ function App() {
           <Route path="products" element={<ProductsPage products={products} />} />
           <Route path="products/:id" element={<ProductDetail />} />
           <Route path="category/:id" element={<CategoryDetails />} />
+          <Route path="searchPages/:search" element={<SearchPages />} />
           <Route path="signin" element={<Signin />} />
           <Route path="signup" element={<Signup />} />
         </Route>

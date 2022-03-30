@@ -1,5 +1,6 @@
 import React from 'react'
-import { Link, NavLink } from 'react-router-dom'
+import { useForm, SubmitHandler } from 'react-hook-form'
+import { Link, NavLink, useNavigate } from 'react-router-dom'
 import { CategoryTypes } from '../types/category'
 import { getLocalStorage } from '../utils/localStorage'
 
@@ -8,8 +9,14 @@ type Props = {
 }
 
 const Header = (props: Props) => {
+    const navigate = useNavigate();
     const { category } = props;
     const { user } = getLocalStorage();
+    const { register, handleSubmit, formState: { errors } } = useForm<any>();
+    const onSubmit: SubmitHandler<any> = (data) => {
+        console.log(data);
+        navigate(`/searchPages/${data.contentSearch}`)
+    }
     // const user = {
     //     name : "nam"
     // };
@@ -143,14 +150,14 @@ const Header = (props: Props) => {
                             </nav>
                         </div>
                         <div>
-                            <form method="" action="/search" id="form-search">
+                            <form method="" onSubmit={handleSubmit(onSubmit)} id="form-search">
                                 <div className="relative text-gray-600 focus-within:text-gray-400">
                                     <span className="absolute inset-y-0 left-0 flex items-center pl-2">
                                         <button className="p-1 focus:outline-none focus:shadow-outline">
                                             <svg fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" viewBox="0 0 24 24" className="w-6 h-6"><path d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
                                         </button>
                                     </span>
-                                    <input type="text" id="searchValue" name="q" className="py-2 text-sm text-white border border-solid  border-yellow-300 rounded-md pl-10 focus:outline-none focus:bg-white   focus:text-gray-900" placeholder="Search..." />
+                                    <input type="text" {...register('contentSearch')} id="contentSearch" name="contentSearch" className="py-2 text-sm text-white border border-solid  border-yellow-300 rounded-md pl-10 focus:outline-none focus:bg-white   focus:text-gray-900" placeholder="Search..." />
                                 </div>
                             </form>
                         </div>
