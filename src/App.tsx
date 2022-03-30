@@ -91,16 +91,14 @@ function App() {
           <Route path="category/:id" element={<CategoryDetails />} />
           <Route path="signin" element={<Signin />} />
           <Route path="signup" element={<Signup />} />
-
-
-
         </Route>
+
         <Route path="admin" element={<PrivateRouter><AdminLayout /></PrivateRouter>} >
           <Route index element={<Dashboard />} />
           <Route path="products">
             <Route index element={<ProductsAdmin products={products} propsHandlerDeleteProducts={handlerRemoveProduct} />} />
             <Route path=":id/edit" element={<ProductEdit onUpdate={handlerUpdateProduct} />} />
-            <Route path="add" element={<ProductsAdminAdd onAdd={handlerAddProducts} />} />
+            <Route path="add" element={<ProductsAdminAdd onAdd={handlerAddProducts} category={category} />} />
           </Route>
           <Route path="category">
             <Route index element={<CategoryList category={category} handlerRemoveCategory={handlerRemoveCategory} />} />
