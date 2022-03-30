@@ -16,7 +16,7 @@ const CategoryDetails = (props: Props) => {
       setProductsByCate(products)
     }
     getCategory()
-  }, [])
+  }, [id])
   return (
     <div>
       <div className="2xl:container 2xl:mx-auto">
