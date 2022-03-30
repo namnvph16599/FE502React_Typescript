@@ -16,8 +16,8 @@ const ProductsAdminAdd = (props: Props) => {
   const onSubmit: SubmitHandler<ProductsType> = data => {
     console.log(data);
     console.log(data.category);
-    // props.onAdd(data)
-    // navigate("/admin/products")
+    props.onAdd(data)
+    navigate("/admin/products")
   }
   return (
     <div>
@@ -72,9 +72,9 @@ const ProductsAdminAdd = (props: Props) => {
                   </div>
 
                   <div className="col-span-6 sm:col-span-3">
-                    <label className="block text-sm font-medium text-gray-700">Country</label>
+                    <label className="block text-sm font-medium text-gray-700">Category</label>
                     <select {...register('category')} className="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
-                      {category?.map((item: CategoryTypes) => <option value={item._id}>{item.name}</option>)}
+                      {category?.map((item: CategoryTypes) => <option key={item._id} value={item._id}>{item.name}</option>)}
                     </select>
                   </div>
                   <div>

@@ -29,14 +29,15 @@ const ProductsAdmin = (props: Props) => {
               <th className="font-normal text-left pl-4">ID</th>
               <th className="font-normal text-left pl-12">Name</th>
               <th className="font-normal text-left pl-12">Price</th>
-
+              <th className="font-normal text-left pl-12">Quantity</th>
               <th className="font-normal text-left pl-12">Image</th>
             </tr>
           </thead>
           <tbody className="w-full">
-            {products?.map((val: any) => (
+            {products?.map((val: any, index) => (
               <tr key={val._id} className="focus:outline-none h-20 text-sm leading-none text-gray-800 bg-white hover:bg-gray-100 border-b border-t border-gray-100">
                 <td className="pl-5">
+                  {index + 1}
                 </td>
                 <td className="pl-5">
                   <p className="font-medium">{val.name}</p>
@@ -45,9 +46,11 @@ const ProductsAdmin = (props: Props) => {
                   <p className="font-medium">{val.price}</p>
                 </td>
                 <td className="pl-5">
-                  <img src="val.image" alt="" width="100px" />
+                  <p className="font-medium">{val.quantity}</p>
                 </td>
-
+                <td className="pl-5">
+                  <img src={val.image} alt="" width="100px" />
+                </td>
                 <td>
                   <Link to={`${val._id}/edit`}><a className="font-medium text-base text-green-500 hover:text-indigo-900">Edit</a></Link>
                 </td>

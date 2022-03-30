@@ -99,7 +99,7 @@ function App() {
           <Route index element={<Dashboard />} />
           <Route path="products">
             <Route index element={<ProductsAdmin products={products} propsHandlerDeleteProducts={handlerRemoveProduct} />} />
-            <Route path=":id/edit" element={<ProductEdit onUpdate={handlerUpdateProduct} />} />
+            <Route path=":id/edit" element={<ProductEdit category={category} onUpdate={handlerUpdateProduct} />} />
             <Route path="add" element={<ProductsAdminAdd onAdd={handlerAddProducts} category={category} />} />
           </Route>
           <Route path="category">
