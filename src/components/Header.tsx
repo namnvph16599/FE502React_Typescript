@@ -1,10 +1,14 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
+import { Link, NavLink } from 'react-router-dom'
+import { CategoryTypes } from '../types/category'
 import { getLocalStorage } from '../utils/localStorage'
 
-type Props = {}
+type Props = {
+    category: CategoryTypes[]
+}
 
 const Header = (props: Props) => {
+    const { category } = props;
     const { user } = getLocalStorage();
     // const user = {
     //     name : "nam"
@@ -90,6 +94,19 @@ const Header = (props: Props) => {
                 ">
                                             Category
                                         </a>
+                                        <div className="box-category submenu relative lg:absolute w-[250px] top-full lg:top-[110%] left-0 rounded-sm lg:shadow-lg p-4 lg:block lg:opacity-0 lg:invisible group-hover:opacity-100 lg:group-hover:visible lg:group-hover:top-full bg-white transition-[top] duration-300">
+                                            <a href="/category/1" data-id="1" className="
+                              block
+                              text-sm text-body-color
+                              rounded
+                              hover:text-primary
+                              py-[10px]
+                              px-4
+                            ">
+                                                Quần update 2
+                                            </a>
+
+                                        </div>
                                     </li>
                                     <li className="relative group">
                                         <a href="/products" className="
