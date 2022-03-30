@@ -12,7 +12,7 @@ export const cateList = () => {
 }
 
 
-export const cateListOne = (id: any) => {
+export const cateListById = (id: any) => {
     const url = `category/${id}`;
     return instance.get(url)
 }

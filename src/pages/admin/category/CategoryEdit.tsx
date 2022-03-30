@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 import { useForm, SubmitHandler } from 'react-hook-form'
 import { Link, useNavigate, useParams } from 'react-router-dom'
-import { cateListOne } from '../../../api/category'
+import { cateListById } from '../../../api/category'
 import { CategoryTypes } from '../../../types/category'
 
 type Props = {
@@ -18,8 +18,8 @@ const CategoryEdit = (props: Props) => {
   }
   useEffect(() => {
     const getCategory = async () => {
-      // console.log(id);
-      const { data } = await cateListOne(id);
+      // console.log(id);cateListById
+      const { data } = await cateListById(id);
       // console.log(data);
       reset(data.category);
     }
