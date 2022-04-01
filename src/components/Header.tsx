@@ -14,7 +14,7 @@ const Header = (props: Props) => {
     const { user } = getLocalStorage();
     const { register, handleSubmit, formState: { errors } } = useForm<any>();
     const onSubmit: SubmitHandler<any> = (data) => {
-        console.log(data);
+        // console.log(data);
         navigate(`/searchPages/${data.contentSearch}`)
     }
     // const user = {
@@ -54,8 +54,7 @@ const Header = (props: Props) => {
             ">
                                 <ul className="blcok lg:flex">
                                     <li className="relative group">
-                                        <a href="/" className="
-                    ud-menu-scroll
+                                        <Link to="/" className="ud-menu-scroll
                     text-base text-dark
                     lg:text-dark-400
                     font-bold
@@ -66,14 +65,12 @@ const Header = (props: Props) => {
                     lg:py-6 lg:inline-flex lg:px-0
                     flex
                     mx-8
-                    lg:mr-0
-                  ">
+                    lg:mr-0">
                                             Home
-                                        </a>
+                                        </Link>
                                     </li>
-                                    <li className="relative group submenu-item">
-                                        <a className="
-                  text-base text-dark
+                                    <li className="relative group">
+                                        <p  className="text-base text-dark
                   lg:text-dark-400
                   font-bold
                   lg:group-hover:opacity-70
@@ -97,10 +94,9 @@ const Header = (props: Props) => {
                   after:right-1
                   after:top-1/2
                   after:-translate-y-1/2
-                  after:mt-[-2px]
-                ">
-                                            Category
-                                        </a>
+                  after:mt-[-2px]">
+                                            Catetory
+                                        </p>
                                         <div className="box-category submenu relative lg:absolute w-[250px] top-full lg:top-[110%] left-0 rounded-sm lg:shadow-lg p-4 lg:block lg:opacity-0 lg:invisible group-hover:opacity-100 lg:group-hover:visible lg:group-hover:top-full bg-white transition-[top] duration-300">
                                             {category?.map(item => {
                                                 return (<Link key={item._id} to={`/category/${item._id}`} className="block text-sm text-body-color font-semibold rounded hover:text-primary hover:text-[#fcaf17] py-[10px] px-4">
@@ -109,8 +105,7 @@ const Header = (props: Props) => {
                                         </div>
                                     </li>
                                     <li className="relative group">
-                                        <a href="/products" className="
-                    ud-menu-scroll
+                                        <Link to="/products" className="ud-menu-scroll
                     text-base text-dark
                     lg:text-dark-400
                     font-bold
@@ -121,30 +116,9 @@ const Header = (props: Props) => {
                     lg:py-6 lg:inline-flex lg:px-0
                     flex
                     mx-8
-                    lg:mr-0 lg:ml-7
-                    xl:ml-12
-                  ">
+                    lg:mr-0">
                                             Products
-                                        </a>
-                                    </li>
-                                    <li className="relative group">
-                                        <a href="/news" className="
-                    ud-menu-scroll
-                    text-base text-dark
-                    lg:text-dark-400
-                    font-bold
-                    lg:group-hover:opacity-70
-                    lg:group-hover:text-[#fcaf17]
-                    group-hover:text-primary
-                    py-2
-                    lg:py-6 lg:inline-flex lg:px-0
-                    flex
-                    mx-8
-                    lg:mr-0 lg:ml-7
-                    xl:ml-12
-                  ">
-                                            News
-                                        </a>
+                                        </Link>
                                     </li>
                                 </ul>
                             </nav>
@@ -163,7 +137,7 @@ const Header = (props: Props) => {
                         </div>
                         {user ? (<li className="box-acount relative group submenu-item list-none">
                             <Link to="">
-                                <a className="
+                                <span className="
         text-base
         font-medium
         text-white
@@ -177,7 +151,7 @@ const Header = (props: Props) => {
         ease-in-out
       ">
                                     {user.name}
-                                </a></Link></li>) : (<li className="box-acount relative group submenu-item list-none">
+                                </span></Link></li>) : (<li className="box-acount relative group submenu-item list-none">
                                     <Link to="signin">
                                         <a href="/signin" className="
         text-base
