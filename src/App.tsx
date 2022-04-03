@@ -23,6 +23,8 @@ import CategoryAdd from './pages/admin/category/CategoryAdd';
 import CategoryEdit from './pages/admin/category/CategoryEdit';
 import CategoryDetails from './pages/CategoryDetails';
 import SearchPages from './pages/SearchPages';
+import AboutPage from './pages/AboutPage';
+import Contact from './pages/Contact';
 function App() {
   const [products, setProducts] = useState<ProductsType[]>([]);
   const [category, setCategory] = useState<CategoryTypes[]>([]);
@@ -87,6 +89,8 @@ function App() {
       <Routes>
         <Route path="/" element={<WebsiteLayout category={category} />}>
           <Route index element={<HomePage products={products} />} />
+          <Route path="contact" element={<Contact />} />
+
           <Route path="products" element={<ProductsPage products={products} />} />
           <Route path="products/:id" element={<ProductDetail />} />
           <Route path="category/:id" element={<CategoryDetails />} />

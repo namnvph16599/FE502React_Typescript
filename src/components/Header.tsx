@@ -170,7 +170,7 @@ const Header = (props: Props) => {
                         {user ? (<li className="relative group list-none
                             no-underline">
                                 <span  className="focus:outline-none  w-4 h-4 bg-cover bg-center rounded-md">
-                        <img src="https://tuk-cdn.s3.amazonaws.com/assets/components/avatars/a_4_0.png" alt="girl" className="inline-block h-8 w-8 overflow-hidden object-cover rounded-full border-2 border-white dark:border-gray-700 shadow" />
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTSm8vsp1sAvwrIdzz9MaqjVxA83f1eqYufrw&usqp=CAU" alt="girl" className="inline-block h-8 w-8 overflow-hidden object-cover rounded-full border-2 border-white dark:border-gray-700 shadow" />
                     </span>
                             <p className="text-base text-dark
                             
