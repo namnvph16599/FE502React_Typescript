@@ -1,0 +1,35 @@
+{
+  "products": [
+    {
+      "id": 1,
+      "name": "PRoducts 1",
+      "price": 1,
+      "image": "image 1"
+    },
+    {
+      "id": 2,
+      "name": "PRoducts 1",
+      "price": 1,
+      "image": "image 1"
+    },
+    {
+      "id": 3,
+      "name": "PRoducts 1",
+      "price": 1,
+      "image": "image 1"
+    },
+    {
+      "id": 4,
+      "name": "PRoducts 1",
+      "price": 1,
+      "image": "image 1"
+    }
+  ],
+  "users": [
+    {
+      "email": "namnvph16599@fpt.edu.vn",
+      "password": "$2a$10$7b0yqWAS1TfkZKp6GYsb5uMWu0rnlkQftxJyxBr2GN0v9Q6dLBr7a",
+      "id": 1
+    }
+  ]
+}
