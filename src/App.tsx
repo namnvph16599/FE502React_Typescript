@@ -34,7 +34,7 @@ function App() {
   useEffect(() => {
     const getProducts = async () => {
       const { data } = await list();
-      console.log(data);
+      // console.log(data);
       setProducts(data);
     }
     getProducts();
@@ -91,7 +91,7 @@ function App() {
         <Route path="/" element={<WebsiteLayout category={category} />}>
           <Route index element={<HomePage products={products} />} />
           <Route path="contact" element={<Contact />} />
-          <Route path="update-profile" element={<UpdateProfile />} />
+          <Route path="update-profile/:id" element={<UpdateProfile />} />
           <Route path="products" element={<ProductsPage products={products} />} />
           <Route path="products/:id" element={<ProductDetail />} />
           <Route path="category/:id" element={<CategoryDetails />} />

@@ -9,8 +9,9 @@ type Props = {}
 const Signup = (props: Props) => {
   const { register, handleSubmit, formState: { errors } } = useForm<UserType>()
   const navigate = useNavigate();
-  const onSubmit: SubmitHandler<UserType> = (dataSignup) => {
-    signup(dataSignup);
+  const onSubmit: SubmitHandler<UserType> = async (dataSignup) => {
+    const data = await signup(dataSignup);
+    console.log(data);
     navigate("/signin")
   }
   return (

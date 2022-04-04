@@ -1,15 +1,25 @@
 import React, { useEffect } from 'react'
 import { SubmitHandler, useForm } from 'react-hook-form'
+import { useNavigate, useParams } from 'react-router-dom'
+import { updateProfile } from '../api/user'
 import { UserType } from '../types/user'
-import { getLocalStorage } from '../utils/localStorage'
+import { getLocalStorage, setLocalStorage } from '../utils/localStorage'
 
 type Props = {
 }
 
 const UpdateProfile = (props: Props) => {
+    const navigate = useNavigate();
     const { register, handleSubmit, formState: { errors }, reset } = useForm<UserType>();
-    const onSubmit: SubmitHandler<UserType> = (data) => {
+    const onSubmit: SubmitHandler<UserType> = async (dataUser) => {
+        // console.log(dataUser);
+        const { data } = await updateProfile(dataUser);
         console.log(data);
+
+        setLocalStorage(data, () => {
+            navigate("/")
+            console.log("user");
+        })
     }
     useEffect(() => {
         const { user } = getLocalStorage();

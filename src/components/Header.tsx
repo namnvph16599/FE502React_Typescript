@@ -201,7 +201,7 @@ const Header = (props: Props) => {
                                 {user?.name}
                             </p>
                             <div className="box-category submenu relative lg:absolute w-[250px] top-full lg:top-[110%] left-0 rounded-sm lg:shadow-lg p-4 lg:block lg:opacity-0 lg:invisible group-hover:opacity-100 lg:group-hover:visible lg:group-hover:top-full bg-white transition-[top] duration-300">
-                                <Link to="/update-profile" className="block text-sm text-body-color font-semibold rounded hover:text-primary hover:text-[#fcaf17] py-[10px] px-4">Update Profile
+                                <Link to={`/update-profile/${user.id}`} className="block text-sm text-body-color font-semibold rounded hover:text-primary hover:text-[#fcaf17] py-[10px] px-4">Update Profile
                                 </Link>
                                 <Link to="#" className="block text-sm text-body-color font-semibold rounded hover:text-primary hover:text-[#fcaf17] py-[10px] px-4">Change password
                                 </Link>

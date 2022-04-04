@@ -1,9 +1,15 @@
 import { CategoryTypes } from "../types/category";
+import { getLocalStorage } from "../utils/localStorage";
 import instance from "./instance";
 
+const { token, user } = getLocalStorage();
 export const catePost = (cate: CategoryTypes) => {
-    const url = "category";
-    return instance.post(url, cate)
+    const url = `category/${user.id}`;
+    return instance.post(url, cate, {
+        headers: {
+            "Authorization": `Bearer ${token}`
+        }
+    });
 }
 
 export const cateList = () => {
