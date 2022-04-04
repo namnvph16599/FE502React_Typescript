@@ -33,7 +33,8 @@ export const post = (data: ProductsType) => {
     });
 }
 
-// export const post = (data: ProductsType) => {
-//     const url = `products`;
-//     return instance.post(url, data);
-// }
+
+export const getProdutcsSearch = (data: any) => {
+    const url = `search/${data}`;
+    return instance.get(url);
+}

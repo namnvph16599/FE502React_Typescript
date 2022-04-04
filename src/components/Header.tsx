@@ -156,7 +156,7 @@ const Header = (props: Props) => {
                             </nav>
                         </div>
                         <div>
-                            {/* <form method="" onSubmit={handleSubmit(onSubmit)} id="form-search">
+                            <form method="" onSubmit={handleSubmit(onSubmit)} id="form-search">
                                 <div className="relative text-gray-600 focus-within:text-gray-400">
                                     <input type="text" {...register('contentSearch')} id="contentSearch" name="contentSearch" className="py-2 text-sm text-white border border-solid  border-yellow-300 rounded-md pl-10 focus:outline-none focus:bg-white   focus:text-gray-900" placeholder="Search..." />
                                     <span className="absolute inset-y-0 left-0 flex items-center pl-2">
@@ -165,7 +165,7 @@ const Header = (props: Props) => {
                                         </button>
                                     </span>
                                 </div>
-                            </form> */}
+                            </form>
                         </div>
                         {user ? (<li className="relative group list-none
                             no-underline">
