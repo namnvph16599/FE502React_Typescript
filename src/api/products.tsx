@@ -35,6 +35,6 @@ export const post = (data: ProductsType) => {
 
 
 export const getProdutcsSearch = (data: any) => {
-    const url = `search/${data}`;
-    return instance.get(url);
+    const url = `search?q=${data}`;
+    return instance.post(url);
 }

@@ -26,6 +26,7 @@ import SearchPages from './pages/SearchPages';
 import AboutPage from './pages/AboutPage';
 import Contact from './pages/Contact';
 import UpdateProfile from './pages/UpdateProfile';
+
 function App() {
   const [products, setProducts] = useState<ProductsType[]>([]);
   const [category, setCategory] = useState<CategoryTypes[]>([]);

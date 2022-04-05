@@ -7,10 +7,12 @@
     "start:server": "json-server-auth db.json --port 3001"
   },
   "dependencies": {
+    "antd": "^4.19.5",
     "axios": "^0.26.1",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-hook-form": "^7.28.0",
+    "react-responsive-carousel": "^3.2.23",
     "react-router-dom": "^6.2.2"
   },
   "devDependencies": {

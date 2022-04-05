@@ -30,7 +30,7 @@ const Header = (props: Props) => {
   ">
                     <div className="px-4 w-50 max-w-full">
                         <a href="/" className="navbar-logo w-full block py-5">
-                            <img src="https://bizweb.dktcdn.net/100/438/408/themes/848101/assets/logo.svg?1644287733320" alt="logo" className="h-8 w-auto sm:h-10" />
+                            <img src="https://bizweb.sapocdn.net/100/438/408/themes/848101/assets/logo.svg?1649135007928" alt="logo" className="h-8 w-auto sm:h-10" />
                         </a>
                     </div>
                     <div className="flex px-4 justify-between items-center w-full">
@@ -97,7 +97,7 @@ const Header = (props: Props) => {
                   after:mt-[-2px]">
                                             Catetory
                                         </p>
-                                        <div className="box-category submenu relative lg:absolute w-[250px] top-full lg:top-[110%] left-0 rounded-sm lg:shadow-lg p-4 lg:block lg:opacity-0 lg:invisible group-hover:opacity-100 lg:group-hover:visible lg:group-hover:top-full bg-white transition-[top] duration-300">
+                                        <div className="z-50 box-category submenu relative lg:absolute w-[250px] top-full lg:top-[110%] left-0 rounded-sm lg:shadow-lg p-4 lg:block lg:opacity-0 lg:invisible group-hover:opacity-100 lg:group-hover:visible lg:group-hover:top-full bg-white transition-[top] duration-300">
                                             {category?.map(item => {
                                                 return (<Link key={item._id} to={`/category/${item._id}`} className="block text-sm text-body-color font-semibold rounded hover:text-primary hover:text-[#fcaf17] py-[10px] px-4">
                                                     {item.name}</Link>)
@@ -157,21 +157,22 @@ const Header = (props: Props) => {
                         </div>
                         <div>
                             <form method="" onSubmit={handleSubmit(onSubmit)} id="form-search">
-                                <div className="relative text-gray-600 focus-within:text-gray-400">
-                                    <input type="text" {...register('contentSearch')} id="contentSearch" name="contentSearch" className="py-2 text-sm text-white border border-solid  border-yellow-300 rounded-md pl-10 focus:outline-none focus:bg-white   focus:text-gray-900" placeholder="Search..." />
-                                    <span className="absolute inset-y-0 left-0 flex items-center pl-2">
-                                        <button className="p-1 focus:outline-none focus:shadow-outline">
-                                            <svg fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" viewBox="0 0 24 24" className="w-6 h-6"><path d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
-                                        </button>
-                                    </span>
+                                <div className=" flex justify-start items-center py-7 relative">
+                                    <input {...register('contentSearch')} className="text-sm leading-none text-left text-gray-600 px-4 py-3 w-full border rounded border-[#ffaf05]  outline-none" type="text" placeholder="Search" />
+                                    <button className="flex justify-start items-center py-7 relative text-[#ffaf05]">
+                                        <svg className="absolute right-3 z-10 cursor-pointer text-[#ffaf05]" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M10 17C13.866 17 17 13.866 17 10C17 6.13401 13.866 3 10 3C6.13401 3 3 6.13401 3 10C3 13.866 6.13401 17 10 17Z" stroke="#4B5563" stroke-width="1.66667" stroke-linecap="round" stroke-linejoin="round" />
+                                            <path d="M21 21L15 15" stroke="#4B5563" stroke-width="1.66667" stroke-linecap="round" stroke-linejoin="round" />
+                                        </svg>
+                                    </button>
                                 </div>
                             </form>
                         </div>
-                        {user ? (<li className="relative group list-none
+                        {user ? (<li className="z-50 relative group list-none
                             no-underline">
-                                <span  className="focus:outline-none  w-4 h-4 bg-cover bg-center rounded-md">
-                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTSm8vsp1sAvwrIdzz9MaqjVxA83f1eqYufrw&usqp=CAU" alt="girl" className="inline-block h-8 w-8 overflow-hidden object-cover rounded-full border-2 border-white dark:border-gray-700 shadow" />
-                    </span>
+                            <span className="focus:outline-none  w-4 h-4 bg-cover bg-center rounded-md">
+                                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTSm8vsp1sAvwrIdzz9MaqjVxA83f1eqYufrw&usqp=CAU" alt="girl" className="inline-block h-8 w-8 overflow-hidden object-cover rounded-full border-2 border-white dark:border-gray-700 shadow" />
+                            </span>
                             <p className="text-base text-dark
                             
                   lg:text-dark-400
@@ -200,7 +201,7 @@ const Header = (props: Props) => {
                   after:mt-[-2px]">
                                 {user?.name}
                             </p>
-                            <div className="box-category submenu relative lg:absolute w-[250px] top-full lg:top-[110%] left-0 rounded-sm lg:shadow-lg p-4 lg:block lg:opacity-0 lg:invisible group-hover:opacity-100 lg:group-hover:visible lg:group-hover:top-full bg-white transition-[top] duration-300">
+                            <div className="z-50 box-category submenu relative lg:absolute w-[250px] top-full lg:top-[110%] left-0 rounded-sm lg:shadow-lg p-4 lg:block lg:opacity-0 lg:invisible group-hover:opacity-100 lg:group-hover:visible lg:group-hover:top-full bg-white transition-[top] duration-300">
                                 <Link to={`/update-profile/${user.id}`} className="block text-sm text-body-color font-semibold rounded hover:text-primary hover:text-[#fcaf17] py-[10px] px-4">Update Profile
                                 </Link>
                                 <Link to="#" className="block text-sm text-body-color font-semibold rounded hover:text-primary hover:text-[#fcaf17] py-[10px] px-4">Change password
@@ -208,7 +209,7 @@ const Header = (props: Props) => {
                                 <Link to="#" className="block text-sm text-body-color font-semibold rounded hover:text-primary hover:text-[#fcaf17] py-[10px] px-4">Logout
                                 </Link>
                             </div>
-                        </li>) : (<li className="box-acount relative group submenu-item list-none">
+                        </li>) : (<li className="z-50 box-acount relative group submenu-item list-none">
                             <Link to="signin">
                                 <a href="/signin" className="
         text-base
